@@ -1,0 +1,32 @@
+name: Testes
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  coletor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r codigo-fonte/coletor/requirements.txt pytest
+      - run: python -m pytest -q codigo-fonte/coletor/tests
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Gerar index.html a partir de codigo-fonte
+        working-directory: codigo-fonte
+        run: |
+          npm ci --no-audit --no-fund
+          python3 build.py
