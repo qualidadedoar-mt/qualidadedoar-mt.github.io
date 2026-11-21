@@ -33,6 +33,10 @@ CAMPOS_PA = ["name", "latitude", "longitude", "last_seen", "humidity",
              "pm2.5_cf_1_a", "pm2.5_cf_1_b"]
 
 
+class ErroPurpleAir(RuntimeError):
+    pass
+
+
 # ---------------------------------------------------------------- utilidades
 def carregar_config() -> dict:
     return json.loads((AQUI / "estacoes.json").read_text(encoding="utf-8"))
@@ -84,10 +88,17 @@ def ler_purpleair(cfg: dict, chave: str | None, simulado: dict | None) -> list[d
                 print("PurpleAir: nenhum sensor listado em estacoes.json")
                 return []
             params["show_only"] = ",".join(idx)
-        resp = requests.get("https://api.purpleair.com/v1/sensors", params=params,
-                            headers={"X-API-Key": chave}, timeout=30)
-        resp.raise_for_status()
-        resp = resp.json()
+        r = requests.get("https://api.purpleair.com/v1/sensors", params=params,
+                         headers={"X-API-Key": chave.strip()}, timeout=30)
+        if r.status_code != 200:
+            # a PurpleAir explica o motivo no corpo (ex.: ApiKeyTypeMismatchError, sem pontos no projeto)
+            try:
+                corpo = r.json()
+                motivo = f"{corpo.get('error')}: {corpo.get('description')}"
+            except ValueError:
+                motivo = r.text[:300]
+            raise ErroPurpleAir(f"PurpleAir respondeu HTTP {r.status_code} - {motivo}")
+        resp = r.json()
     else:
         print("PurpleAir: sem PURPLEAIR_API_KEY, pulando")
         return []
@@ -238,11 +249,16 @@ def main() -> int:
         print("ERRO: defina FIREBASE_SERVICE_ACCOUNT ou use --saida", file=sys.stderr)
         return 1
 
-    leituras = ler_purpleair(cfg, os.environ.get("PURPLEAIR_API_KEY"), sim.get("purpleair") if sim else None)
+    erro_pa = None
+    try:
+        leituras = ler_purpleair(cfg, os.environ.get("PURPLEAIR_API_KEY"), sim.get("purpleair") if sim else None)
+    except ErroPurpleAir as e:
+        print(f"ERRO: {e}", file=sys.stderr)
+        erro_pa, leituras = e, []
     leituras += ler_entradas(db, sim.get("entrada") if sim else None)
     if not leituras:
         print("Nenhuma fonte de dados disponível; nada publicado (o portal segue em modo demonstração).")
-        return 0
+        return 1 if erro_pa else 0
 
     if a.saida:
         anterior = json.loads(Path(a.anterior).read_text(encoding="utf-8")) if a.anterior else None
@@ -265,7 +281,7 @@ def main() -> int:
     if hist:
         db.collection("historico").document(dia.strftime("%Y-%m-%d")).set(hist, merge=True)
     print(f"Publicado: {len(estado['estacoes'])} estações, {sum(e['online'] for e in estado['estacoes'])} online")
-    return 0
+    return 1 if erro_pa else 0  # falha visível no Actions, mas as estações locais já foram publicadas
 
 
 if __name__ == "__main__":
