@@ -6,12 +6,141 @@
     "intercepto": 0.0
   },
   "purpleair": {
-    "modo": "recorte",
-    "_nota_modo": "recorte = todos os sensores externos dentro do retângulo de MT (filtrados pelo limite do estado). lista = só os índices em 'sensores'.",
-    "recorte": { "oeste": -61.7, "norte": -7.3, "leste": -50.1, "sul": -18.1 },
+    "modo": "lista",
+    "_nota_modo": "lista = só os sensores abaixo (rede da Sema; leitura sem custo para o proprietário). recorte = todos os sensores externos no retângulo de MT, inclusive de terceiros (gasta pontos).",
+    "recorte": {
+      "oeste": -61.7,
+      "norte": -7.3,
+      "leste": -50.1,
+      "sul": -18.1
+    },
+    "_nota_sensores": "Exportado do painel PurpleAir (my-sensors-2026-11-21). Sem 'municipio', o coletor descobre pela posição. Fora da lista: 240119 (UNEMAT Nova Mutum antigo, offline desde 2026-04).",
     "sensores": [
-      { "indice": 0, "id": "pa-exemplo", "nome": "Troque pelo nome do local", "municipio": "Cuiabá", "operador": "Sema-MT",
-        "_nota": "Opcional: use para dar nome, operador e município aos sensores conhecidos. O índice aparece no mapa da PurpleAir (sensor_index)." }
+      {
+        "indice": 241691,
+        "id": "pa-ufmt-pgfa",
+        "nome": "UFMT · Física Ambiental (PPGFA)",
+        "municipio": "Cuiabá",
+        "operador": "Sema-MT · UFMT"
+      },
+      {
+        "indice": 242083,
+        "id": "pa-sema-sede",
+        "nome": "Sede da Sema-MT",
+        "municipio": "Cuiabá",
+        "operador": "Sema-MT"
+      },
+      {
+        "indice": 241605,
+        "id": "pa-ufmt-vg",
+        "nome": "UFMT Várzea Grande",
+        "municipio": "Várzea Grande",
+        "operador": "Sema-MT · UFMT"
+      },
+      {
+        "indice": 241647,
+        "id": "pa-unemat-alta-floresta",
+        "nome": "UNEMAT Alta Floresta",
+        "municipio": "Alta Floresta",
+        "operador": "Sema-MT · UNEMAT"
+      },
+      {
+        "indice": 242093,
+        "id": "pa-unemat-alto-araguaia",
+        "nome": "UNEMAT Alto Araguaia",
+        "municipio": "Alto Araguaia",
+        "operador": "Sema-MT · UNEMAT"
+      },
+      {
+        "indice": 241667,
+        "id": "pa-unemat-barra-do-bugres",
+        "nome": "UNEMAT Barra do Bugres",
+        "municipio": "Barra do Bugres",
+        "operador": "Sema-MT · UNEMAT"
+      },
+      {
+        "indice": 241671,
+        "id": "pa-unemat-nova-mutum",
+        "nome": "UNEMAT Nova Mutum",
+        "municipio": "Nova Mutum",
+        "operador": "Sema-MT · UNEMAT"
+      },
+      {
+        "indice": 242085,
+        "id": "pa-nobres-prefeitura",
+        "nome": "Prefeitura de Nobres",
+        "municipio": "Nobres",
+        "operador": "Sema-MT · Prefeitura"
+      },
+      {
+        "indice": 241713,
+        "id": "pa-unaerp-feliz-natal",
+        "nome": "UNAERP Feliz Natal",
+        "municipio": "Feliz Natal",
+        "operador": "Sema-MT · UNAERP"
+      },
+      {
+        "indice": 241693,
+        "id": "pa-ifmt-primavera",
+        "nome": "IFMT Primavera do Leste",
+        "municipio": "Primavera do Leste",
+        "operador": "Sema-MT · IFMT"
+      },
+      {
+        "indice": 241701,
+        "id": "pa-ifmt-guaranta",
+        "nome": "IFMT Guarantã do Norte",
+        "municipio": "Guarantã do Norte",
+        "operador": "Sema-MT · IFMT"
+      },
+      {
+        "indice": 242077,
+        "id": "pa-ifmt-campo-novo",
+        "nome": "IFMT Campo Novo do Parecis",
+        "municipio": "Campo Novo do Parecis",
+        "operador": "Sema-MT · IFMT"
+      },
+      {
+        "indice": 242091,
+        "id": "pa-ifmt-pontes-e-lacerda",
+        "nome": "IFMT Pontes e Lacerda",
+        "municipio": "Pontes e Lacerda",
+        "operador": "Sema-MT · IFMT"
+      },
+      {
+        "indice": 241657,
+        "id": "pa-ufmt-rondonopolis",
+        "nome": "UFMT Rondonópolis",
+        "municipio": "Rondonópolis",
+        "operador": "Sema-MT · UFMT"
+      },
+      {
+        "indice": 241629,
+        "id": "pa-ufmt-barra-do-garcas",
+        "nome": "UFMT Barra do Garças",
+        "municipio": "Barra do Garças",
+        "operador": "Sema-MT · UFMT"
+      },
+      {
+        "indice": 241627,
+        "id": "pa-ipam-sao-felix",
+        "nome": "IPAM São Félix do Araguaia",
+        "municipio": "São Félix do Araguaia",
+        "operador": "Sema-MT · IPAM"
+      },
+      {
+        "indice": 242087,
+        "id": "pa-saba-pocone",
+        "nome": "SABA Poconé",
+        "municipio": "Poconé",
+        "operador": "Sema-MT · SABA"
+      },
+      {
+        "indice": 241655,
+        "id": "pa-ipam-a-definir",
+        "nome": "IPAM (local a definir)",
+        "operador": "Sema-MT · IPAM"
+      }
     ]
   }
 }
