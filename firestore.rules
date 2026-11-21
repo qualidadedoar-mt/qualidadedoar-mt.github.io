@@ -1,0 +1,42 @@
+rules_version = '2';
+
+// QAR · Qualidade do Ar MT
+// Acesso só para contas criadas pelo administrador no Authentication e liberadas em users/{uid}.
+// O coletor (GitHub Actions) e o agente local gravam com a conta de serviço (Admin SDK),
+// que não passa por estas regras.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function logado() { return request.auth != null; }
+    function temPerfil() { return exists(/databases/$(database)/documents/users/$(request.auth.uid)); }
+    function perfil() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function ativo() { return logado() && temPerfil() && perfil().status == 'active'; }
+    function admin() { return ativo() && perfil().role == 'admin'; }
+
+    // Perfis: na primeira entrada a pessoa cria o próprio perfil como "pending";
+    // só o admin ativa, bloqueia ou muda o papel.
+    match /users/{uid} {
+      allow read: if logado() && (request.auth.uid == uid || admin());
+      allow create: if logado() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['email', 'status', 'role', 'criado'])
+        && request.resource.data.status == 'pending'
+        && request.resource.data.role == 'leitor'
+        && request.resource.data.email == request.auth.token.email.lower();
+      allow update: if admin() && request.auth.uid != uid
+        && request.resource.data.keys().hasOnly(['email', 'status', 'role', 'criado', 'atualizado'])
+        && request.resource.data.email == resource.data.email
+        && request.resource.data.status in ['pending', 'active', 'blocked']
+        && request.resource.data.role in ['leitor', 'admin'];
+      allow delete: if admin() && request.auth.uid != uid;
+    }
+
+    // Resumo publicado pelo coletor e histórico diário: leitura para contas ativas.
+    match /portal/{doc} { allow read: if ativo(); allow write: if false; }
+    match /historico/{dia} { allow read: if ativo(); allow write: if false; }
+
+    // Entrada das estações locais (Thermo Grid 5000, AQMS06): só o admin consulta.
+    match /entrada/{id} { allow read: if admin(); allow write: if false; }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

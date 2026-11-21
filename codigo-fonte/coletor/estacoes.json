@@ -1,0 +1,17 @@
+{
+  "intervalo_min": 10,
+  "ajuste_local": {
+    "_nota": "Ajuste linear aplicado depois da correção EPA. Atualize com a regressão PurpleAir x Thermo Grid 5000 (UFMT).",
+    "inclinacao": 1.0,
+    "intercepto": 0.0
+  },
+  "purpleair": {
+    "modo": "recorte",
+    "_nota_modo": "recorte = todos os sensores externos dentro do retângulo de MT (filtrados pelo limite do estado). lista = só os índices em 'sensores'.",
+    "recorte": { "oeste": -61.7, "norte": -7.3, "leste": -50.1, "sul": -18.1 },
+    "sensores": [
+      { "indice": 0, "id": "pa-exemplo", "nome": "Troque pelo nome do local", "municipio": "Cuiabá", "operador": "Sema-MT",
+        "_nota": "Opcional: use para dar nome, operador e município aos sensores conhecidos. O índice aparece no mapa da PurpleAir (sensor_index)." }
+    ]
+  }
+}

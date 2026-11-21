@@ -1,0 +1,76 @@
+{
+ "purpleair": {
+  "fields": [
+   "sensor_index",
+   "name",
+   "latitude",
+   "longitude",
+   "last_seen",
+   "humidity",
+   "pm2.5_cf_1_a",
+   "pm2.5_cf_1_b"
+  ],
+  "data": [
+   [
+    1001,
+    "CPA",
+    -15.56,
+    -56.072,
+    1795370400,
+    62,
+    18.2,
+    19.0
+   ],
+   [
+    1005,
+    "Poconé",
+    -16.257,
+    -56.623,
+    1795370400,
+    58,
+    30.5,
+    31.9
+   ],
+   [
+    1006,
+    "São Félix",
+    -11.617,
+    -50.669,
+    1795370400,
+    55,
+    95.0,
+    99.1
+   ],
+   [
+    1010,
+    "Fora de MT",
+    -16.0,
+    -49.0,
+    1795370400,
+    60,
+    10,
+    10
+   ]
+  ]
+ },
+ "entrada": [
+  {
+   "id": "thermo-ufmt",
+   "tipo": "thermo",
+   "nome": "UFMT · Física Ambiental",
+   "municipio": "Cuiabá",
+   "lat": -15.609,
+   "lon": -56.066,
+   "operador": "UFMT/PPGFA",
+   "t": 1795370400,
+   "valores": {
+    "MP2,5": 11.8,
+    "MP10": 21.0,
+    "O3": 64,
+    "NO2": 38,
+    "CO": 0.5,
+    "SO2": 5
+   }
+  }
+ ]
+}

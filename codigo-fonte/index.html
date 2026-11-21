@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>QAR Qualidade do Ar MT</title>
+<!-- ARQUIVO GERADO por codigo-fonte/build.py: não edite o index.html da raiz. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>/*APP_CSS*/</style>
+</head>
+<body class="locked">
+<div class="login" id="login">
+  <div class="login-card">
+    <div class="brand" style="margin-bottom:14px"><svg width="40" height="40" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="var(--accent)"/><path d="M8 14c4-3 7 3 11 0s6-3 9 0M8 20c4-3 7 3 11 0s6-3 9 0M8 26c3-2 5 1 8 0" fill="none" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/><circle cx="27" cy="26" r="3" fill="var(--n2)"/></svg><div><b>QAR</b><span style="display:block">Qualidade do Ar · Mato Grosso</span></div></div>
+    <h1 style="font-size:1.4rem">Acesso restrito</h1>
+    <p class="muted small" style="margin:4px 0 16px">Portal em desenvolvimento. Entre com o e-mail e a senha cadastrados pela equipe.</p>
+    <div id="lg-loading" class="muted">Verificando acesso…</div>
+    <form id="lg-form" hidden>
+      <div class="field"><label for="lg-email">E-mail</label><input id="lg-email" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="lg-pass">Senha</label><input id="lg-pass" type="password" autocomplete="current-password" required></div>
+      <button class="btn pri" id="lg-btn" type="submit" style="width:100%;justify-content:center">Entrar</button>
+      <button class="more" id="lg-reset" type="button">Esqueci minha senha</button>
+    </form>
+    <div id="lg-denied" hidden><p id="lg-denied-txt"></p><button class="btn" type="button" data-logout style="margin-top:12px">Sair e usar outra conta</button></div>
+    <p class="small" id="lg-msg" role="status" aria-live="polite" style="margin-top:10px;color:var(--n4)"></p>
+  </div>
+</div>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#agora" aria-label="QAR Qualidade do Ar MT, início">
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="var(--accent)"/><path d="M8 14c4-3 7 3 11 0s6-3 9 0M8 20c4-3 7 3 11 0s6-3 9 0M8 26c3-2 5 1 8 0" fill="none" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round"/><circle cx="27" cy="26" r="3" fill="var(--n2)"/></svg>
+      <div><b>QAR</b><span>Qualidade do Ar<br>Mato Grosso</span></div>
+    </a>
+    <nav class="main" aria-label="Seções">
+      <a href="#agora" data-v="agora" title="Agora" aria-label="Agora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Agora</span></a>
+      <a href="#mapa" data-v="mapa" title="Mapa" aria-label="Mapa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span>Mapa</span></a>
+      <a href="#alertas" data-v="alertas" title="Alertas" aria-label="Alertas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg><span>Alertas</span></a>
+      <a href="#boletins" data-v="boletins" title="Boletins" aria-label="Boletins"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7"/></svg><span>Boletins</span></a>
+      <a href="#comunidade" data-v="comunidade" title="Comunidade" aria-label="Comunidade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Comunidade</span></a>
+      <a href="#dados" data-v="dados" title="Dados" aria-label="Dados"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Dados</span></a>
+      <a href="#rede" data-v="rede" title="A rede" aria-label="A rede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14M8 8a5 5 0 0 0 0 8M16 8a5 5 0 0 1 0 8"/></svg><span>A rede</span></a>
+      <a href="#equipe" data-v="equipe" id="nav-equipe" title="Equipe" aria-label="Equipe" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.8a3.3 3.3 0 0 1 0 6.4M18.5 14.8c1.6.8 2.6 2.6 3 5.2"/></svg><span>Equipe</span><b class="small" id="eq-pend" style="color:var(--n3)"></b></a>
+    </nav>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="text" placeholder="Buscar município" autocomplete="off" aria-label="Buscar município">
+      <div class="sugg" id="sugg" role="listbox"></div>
+    </div>
+    <span class="small muted" id="user" hidden></span>
+    <button class="btn" type="button" id="logout" data-logout hidden>Sair</button>
+    <a class="btn pri" href="#alertas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg><span>Receber alertas</span></a>
+  </div>
+</header>
+<div class="demo" id="banner">
+  <div class="demo-in">
+    <strong id="bn-t"></strong>
+    <span class="muted" id="bn-s"></span>
+    <div class="seg" role="group" aria-label="Cenário de demonstração" id="bn-seg">
+      <button type="button" id="sc-hoje" aria-pressed="true">Hoje (início das chuvas)</button>
+      <button type="button" id="sc-fogo" aria-pressed="false">Episódio de queimadas (setembro)</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- AGORA -->
+<section class="view" id="v-agora" aria-labelledby="t-agora">
+  <h1 id="t-agora" style="position:absolute;left:-9999px">Qualidade do ar agora</h1>
+  <div class="grid">
+    <div class="card c8 hero" id="hero"></div>
+    <div class="card c4">
+      <div class="head"><h3>Alertas ativos</h3><a href="#alertas" class="small">Todos</a></div>
+      <div class="alerts" id="home-alerts"></div>
+    </div>
+    <div class="card c8">
+      <div class="head"><h3 id="fc-title">Previsão para as próximas 72 horas</h3><span class="small muted" id="fc-sub">Modelo de dispersão + focos de calor + meteorologia</span></div>
+      <div id="fc"></div>
+    </div>
+    <div class="card c4">
+      <div class="head"><h3>Fumaça e focos de calor</h3><span class="small muted">últimas 24 h</span></div>
+      <div id="fire"></div>
+    </div>
+    <div class="card c7">
+      <div class="head"><h3>Mato Grosso agora</h3><a href="#mapa" class="small">Abrir mapa completo</a></div>
+      <div class="mapwrap" id="mini-map"></div>
+      <div class="legend" id="legend-mini" style="margin-top:8px"></div>
+    </div>
+    <div class="card c5">
+      <div class="head"><h3>Municípios monitorados</h3><span class="small muted">IQAr, pior primeiro</span></div>
+      <ul class="rank" id="rank"></ul>
+      <button type="button" class="more" id="rank-more"></button>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="view" id="v-mapa" aria-labelledby="t-mapa">
+  <div class="pagehead"><div><span class="eyebrow">Mapa interativo</span><h1 id="t-mapa">Estações, sensores e focos de calor</h1><p>Toque em uma estação para ver a série das últimas 48 horas, os poluentes medidos e a saúde do equipamento. Municípios sem sensor recebem uma estimativa interpolada, marcada como tal.</p></div></div>
+  <div class="grid">
+    <div class="card c8">
+      <div class="mapwrap" id="big-map"><div class="tip" id="tip"></div></div>
+      <div class="legend" id="legend-big" style="margin-top:10px"></div>
+    </div>
+    <div class="c4" style="display:flex;flex-direction:column;gap:18px">
+      <div class="card">
+        <h3>Camadas</h3>
+        <div class="layers">
+          <label><input type="checkbox" id="ly-idw" checked> Estimativa por município (interpolação)</label>
+          <label><input type="checkbox" id="ly-ref" checked> Estações de referência</label>
+          <label><input type="checkbox" id="ly-pa" checked> Sensores PurpleAir</label>
+          <label><input type="checkbox" id="ly-fire" checked> Focos de calor (24 h)</label>
+          <label><input type="checkbox" id="ly-wind"> Vento e transporte de fumaça</label>
+        </div>
+      </div>
+      <div class="card" id="station-panel"><div class="panel-empty">Selecione uma estação no mapa.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALERTAS -->
+<section class="view" id="v-alertas" aria-labelledby="t-alertas">
+  <div class="pagehead"><div><span class="eyebrow">Alertas</span><h1 id="t-alertas">Avisos no seu celular antes de o ar piorar</h1><p>Escolha os municípios, o canal e o nível que dispara o aviso. O alerta chega quando a previsão indica piora e quando a medição confirma, com a recomendação para o seu perfil.</p></div></div>
+  <div class="grid">
+    <div class="card c7">
+      <h2>Cadastrar alerta</h2>
+      <form id="f-alert">
+        <div class="field"><label for="a-mun">Municípios</label><select id="a-mun" multiple size="5"></select><span class="small muted">Segure Ctrl ou Cmd para escolher mais de um.</span></div>
+        <fieldset class="field"><legend>Canal</legend><div class="opts" id="a-ch">
+          <label class="opt"><input type="checkbox" name="ch" value="WhatsApp" checked><span>WhatsApp</span></label>
+          <label class="opt"><input type="checkbox" name="ch" value="Telegram"><span>Telegram</span></label>
+          <label class="opt"><input type="checkbox" name="ch" value="SMS"><span>SMS</span></label>
+          <label class="opt"><input type="checkbox" name="ch" value="E-mail"><span>E-mail</span></label>
+          <label class="opt"><input type="checkbox" name="ch" value="App"><span>Notificação do app</span></label>
+        </div></fieldset>
+        <div class="row">
+          <div class="field"><label for="a-lvl">Avisar a partir de</label><select id="a-lvl">
+            <option value="2">N2 Moderada</option><option value="3" selected>N3 Ruim</option><option value="4">N4 Muito ruim</option><option value="5">N5 Péssima</option></select></div>
+          <div class="field"><label for="a-prof">Perfil</label><select id="a-prof">
+            <option value="geral">População geral</option><option value="sens" selected>Grupo sensível (asma, DPOC, cardíaco, gestante, idoso)</option><option value="cri">Responsável por criança ou escola</option><option value="atl">Pratica atividade ao ar livre</option><option value="trab">Trabalha ao ar livre</option></select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="a-contact">WhatsApp, telefone ou e-mail</label><input id="a-contact" type="text" placeholder="(65) 9 0000-0000"></div>
+          <div class="field"><label for="a-quiet">Silenciar entre</label><select id="a-quiet"><option>Não silenciar</option><option selected>22h e 6h</option><option>23h e 7h</option></select></div>
+        </div>
+        <fieldset class="field"><legend>Também quero receber</legend><div class="opts">
+          <label class="opt"><input type="checkbox" checked><span>Previsão da véspera (18h)</span></label>
+          <label class="opt"><input type="checkbox" checked><span>Fim do episódio</span></label>
+          <label class="opt"><input type="checkbox"><span>Boletim diário</span></label>
+          <label class="opt"><input type="checkbox"><span>Focos de calor a menos de 20 km</span></label>
+        </div></fieldset>
+        <button class="btn pri" type="submit">Ativar alerta</button>
+        <div class="ok" id="a-ok" role="status"></div>
+      </form>
+    </div>
+    <div class="c5" style="display:flex;flex-direction:column;gap:18px">
+      <div class="card"><h3>Como o aviso chega</h3><div class="phone"><div class="scr"><div class="small" style="text-align:center;color:#5A6878;margin-bottom:8px">QAR Mato Grosso · agora</div><div class="bubble" id="a-preview"></div></div></div></div>
+      <div class="card">
+        <h3>Protocolo de níveis</h3>
+        <table><tbody>
+          <tr><td><span class="pill" style="background:var(--n3)">Atenção</span></td><td class="small">IQAr N3 por 2 horas seguidas ou previsão de N3 para o dia seguinte.</td></tr>
+          <tr><td><span class="pill" style="background:var(--n4)">Alerta</span></td><td class="small">IQAr N4 em qualquer estação do município. Aviso a escolas, unidades de saúde e Defesa Civil.</td></tr>
+          <tr><td><span class="pill" style="background:var(--n5)">Emergência</span></td><td class="small">IQAr N5. Comunicação conjunta Sema, SES (Vigiar) e Defesa Civil, com orientação de suspender atividades ao ar livre.</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="card c12">
+      <div class="head"><h2>Alertas em vigor e recentes</h2><span class="small muted">Todo o estado</span></div>
+      <div class="alerts" id="all-alerts"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOLETINS -->
+<section class="view" id="v-boletins" aria-labelledby="t-bol">
+  <div class="pagehead"><div><span class="eyebrow">Boletins</span><h1 id="t-bol">Boletim diário da qualidade do ar</h1><p>Gerado automaticamente às 10h a partir das médias de 24 horas, revisado pela equipe técnica e publicado em vários formatos para imprensa, rádio, escolas e redes sociais.</p></div></div>
+  <div class="grid">
+    <article class="card c8 bul" id="bulletin"></article>
+    <div class="c4" style="display:flex;flex-direction:column;gap:18px">
+      <div class="card"><h3>Este boletim em outros formatos</h3>
+        <div class="formats">
+          <button class="btn" type="button" data-copy="wa">Texto para WhatsApp</button>
+          <button class="btn" type="button" data-copy="radio">Roteiro para rádio</button>
+          <button class="btn" type="button" data-copy="press">Nota à imprensa</button>
+          <button class="btn" type="button" data-copy="csv">Tabela em CSV</button>
+        </div>
+        <p class="small muted" style="margin-top:8px">Cada botão copia o texto para a área de transferência. No portal em produção, também PDF assinado e áudio.</p>
+      </div>
+      <div class="card"><h3>Card para redes sociais</h3><div id="social"></div></div>
+      <div class="card"><h3>Arquivo</h3><ul class="archive" id="archive"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDADE -->
+<section class="view" id="v-comunidade" aria-labelledby="t-com">
+  <div class="pagehead"><div><span class="eyebrow">Comunidade</span><h1 id="t-com">Quem respira, também informa</h1><p><b>Demonstração:</b> os relatos ficam só neste navegador por enquanto. Relatos de fumaça, queimadas e odores ajudam a equipe a confirmar episódios e a direcionar a fiscalização. Cada relato é cruzado com sensores e focos de satélite antes de ganhar o selo de verificado.</p></div></div>
+  <div class="grid">
+    <div class="card c7">
+      <div class="head"><h2>Relatos recentes</h2><div class="seg" role="group" aria-label="Filtrar relatos"><button type="button" data-f="todos" aria-pressed="true">Todos</button><button type="button" data-f="Fumaça" aria-pressed="false">Fumaça</button><button type="button" data-f="Queimada" aria-pressed="false">Queimada</button><button type="button" data-f="Odor" aria-pressed="false">Odor</button></div></div>
+      <div class="feed" id="feed"></div>
+    </div>
+    <div class="c5" style="display:flex;flex-direction:column;gap:18px">
+      <div class="card">
+        <h3>Enviar relato</h3>
+        <form id="f-rep">
+          <fieldset class="field"><legend>O que você está vendo?</legend><div class="opts">
+            <label class="opt"><input type="radio" name="tp" value="Fumaça" checked><span>Fumaça</span></label>
+            <label class="opt"><input type="radio" name="tp" value="Queimada"><span>Fogo ou queimada</span></label>
+            <label class="opt"><input type="radio" name="tp" value="Odor"><span>Odor forte</span></label>
+            <label class="opt"><input type="radio" name="tp" value="Poeira"><span>Poeira</span></label>
+          </div></fieldset>
+          <div class="field"><label for="r-mun">Município</label><select id="r-mun"></select></div>
+          <div class="field"><label for="r-txt">Descreva (bairro, intensidade, desde quando)</label><textarea id="r-txt" rows="3" placeholder="Ex.: fumaça densa no bairro Pedra 90 desde as 17h, cheiro de mato queimado"></textarea></div>
+          <div class="field"><label for="r-img">Foto (opcional)</label><input id="r-img" type="file" accept="image/*"></div>
+          <button class="btn pri" type="submit">Publicar relato</button>
+        </form>
+      </div>
+      <div class="card qa">
+        <h3>Pergunte a um cientista</h3>
+        <p class="small muted">Respostas da equipe do Programa de Pós-Graduação em Física Ambiental da UFMT.</p>
+        <details open><summary>Máscara de pano protege da fumaça?</summary><p>Pouco. As partículas finas da fumaça (MP2,5) passam pelo tecido. Em episódios ruins, uma PFF2 bem ajustada filtra a maior parte delas.</p></details>
+        <details><summary>Por que o ar fica pior de madrugada?</summary><p>À noite o solo esfria e forma uma camada de inversão térmica perto da superfície. A fumaça fica presa nessa camada até o sol aquecer o ar pela manhã.</p></details>
+        <details><summary>O sensor do meu bairro mostra valor diferente da estação oficial. Qual vale?</summary><p>A estação de referência é a medida oficial. Os sensores de baixo custo são corrigidos com base nela e mostram variações locais. Diferenças de até 5 µg/m³ são esperadas.</p></details>
+        <details><summary>Ar-condicionado ajuda?</summary><p>Ajuda se estiver no modo recirculação e com filtro limpo. Um purificador com filtro HEPA no quarto é a medida mais eficaz dentro de casa.</p></details>
+      </div>
+      <div class="card">
+        <h3>Adote um sensor</h3>
+        <p class="small">Escolas, unidades de saúde e associações de bairro podem receber um sensor PurpleAir em comodato. Basta Wi-Fi e uma tomada na área externa.</p>
+        <div class="stats" style="margin:12px 0"><div class="stat"><b class="num">38</b><span class="small muted">pedidos na fila</span></div><div class="stat"><b class="num">12</b><span class="small muted">escolas parceiras</span></div></div>
+        <a class="btn" href="#comunidade" id="adopt">Quero hospedar um sensor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DADOS -->
+<section class="view" id="v-dados" aria-labelledby="t-dados">
+  <div class="pagehead"><div><span class="eyebrow">Dados abertos e método</span><h1 id="t-dados">Da medição ao alerta, com cada etapa à vista</h1><p>Todos os dados ficam disponíveis por API e para download. O método de correção dos sensores de baixo custo é publicado e calibrado contra a estação de referência da UFMT.</p></div></div>
+  <div class="grid">
+    <div class="card c12">
+      <h2>Fluxo de dados</h2>
+      <div class="pipe">
+        <div><h4>Thermo Grid 5000</h4><ul><li>Estação de referência</li><li>MP2,5, MP10, O3, NOx, CO, SO2</li><li>Datalogger, envio a cada 5 min</li></ul></div>
+        <div><h4>AQMS06 (Zwinsoft)</h4><ul><li>Estação compacta multiparâmetro</li><li>MP, gases, TVOC e meteorologia</li><li>API da plataforma do fabricante ou MQTT</li></ul></div>
+        <div><h4>PurpleAir</h4><ul><li>Todos os sensores externos de MT</li><li>API v1, grupo da Sema + recorte do estado</li><li>Leituras a cada 2 a 10 min</li></ul></div>
+        <div><h4>Controle de qualidade</h4><ul><li>Concordância dos canais A e B</li><li>Correção EPA (umidade) e ajuste local</li><li>Detecção de falhas e dados suspeitos</li></ul></div>
+        <div><h4>Produtos</h4><ul><li>IQAr pela Resolução Conama 506/2024</li><li>Alertas, boletins, app e API pública</li><li>Envio ao MonitorAr (MMA)</li></ul></div>
+      </div>
+    </div>
+    <div class="card c6">
+      <div class="head"><h3>Calibração local dos sensores PurpleAir</h3><span class="small muted">Sensor ao lado da estação Thermo, UFMT</span></div>
+      <div id="calib"></div>
+      <p class="small muted" style="margin-top:8px"><b>Exemplo ilustrativo</b> até a colocalização PurpleAir × Thermo ter dados. Primeiro aplica-se a correção nacional da US EPA (Barkjohn et al., 2021, com extensão para fumaça). Depois, um ajuste linear local a partir da colocalização com a Thermo Grid 5000, revisado a cada estação seca e chuvosa.</p>
+    </div>
+    <div class="card c6">
+      <div class="head"><h3>API pública</h3><span class="small muted">Sem cadastro para consultas básicas</span></div>
+<pre>GET /v1/iqar?municipio=5103403
+{
+  "municipio": "Cuiabá",
+  "iqar": 34, "classe": "N1",
+  "poluente_dominante": "MP2,5",
+  "mp25_24h": 12.6,
+  "atualizado": "2026-11-21T10:00-04:00",
+  "fontes": ["thermo-ufmt","aqms06-centro","pa-212345"]
+}
+
+GET /v1/medicoes?estacao=thermo-ufmt&inicio=2026-11-01&formato=csv
+GET /v1/previsao?municipio=5107909&horas=72
+GET /v1/alertas?ativos=true</pre>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="btn" type="button" data-copy="csvall">Copiar medições de hoje (CSV)</button></div>
+    </div>
+    <div class="card c12">
+      <div class="head"><h3>Saúde da rede</h3><span class="small muted" id="net-sum"></span></div>
+      <div class="tblwrap"><table id="net"></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- REDE -->
+<section class="view" id="v-rede" aria-labelledby="t-rede">
+  <div class="pagehead"><div><span class="eyebrow">A rede</span><h1 id="t-rede">Monitoramento da qualidade do ar em Mato Grosso</h1><p>Parceria da Secretaria de Estado de Meio Ambiente com o Programa de Pós-Graduação em Física Ambiental da UFMT. A meta é ter monitoramento em todos os 142 municípios.</p></div></div>
+  <div class="grid">
+    <div class="card c12"><div class="stats" id="cov"></div></div>
+  </div>
+  <div class="equip" style="margin-top:18px">
+    <div class="card"><span class="badge-shape"><svg width="18" height="18"><rect x="2" y="2" width="14" height="14" fill="var(--ink)"/></svg>Referência</span><h3>Thermo Grid 5000</h3><p class="small">Estação automática instalada no Bloco de Física Ambiental da UFMT, em Cuiabá. Mede os poluentes regulados e serve de padrão para calibrar toda a rede de sensores.</p><p class="small muted">MP2,5 · MP10 · O3 · NO2 · CO · SO2</p></div>
+    <div class="card"><span class="badge-shape"><svg width="18" height="18"><path d="M9 1l8 8-8 8-8-8z" fill="var(--ink)"/></svg>Multiparâmetro</span><h3>AQMS06</h3><p class="small">Estação compacta com sensores de gases e partículas, mais estação meteorológica. Amplia a medição de gases para além do campus.</p><p class="small muted">MP2,5 · MP10 · O3 · NO2 · CO · SO2 · TVOC · vento</p></div>
+    <div class="card"><span class="badge-shape"><svg width="18" height="18"><circle cx="9" cy="9" r="7" fill="var(--ink)"/></svg>Rede densa</span><h3>Sensores PurpleAir</h3><p class="small">Sensores ópticos de partículas com dois canais independentes. A rede da Sema e os sensores de cidadãos e instituições entram no portal após correção e controle de qualidade.</p><p class="small muted">MP1 · MP2,5 · MP10 · temperatura · umidade</p></div>
+  </div>
+  <div class="grid" style="margin-top:18px">
+    <div class="card c7">
+      <h3>Índice de Qualidade do Ar (IQAr)</h3>
+      <p class="small muted" style="margin-bottom:8px">Faixas da Resolução Conama nº 506/2024, conforme orientação técnica do MMA (jan/2025). Concentrações em µg/m³, exceto CO em ppm. O índice divulgado é o do poluente em pior situação.</p>
+      <div class="tblwrap"><table id="iqar-tbl"></table></div>
+    </div>
+    <div class="card c5">
+      <h3>Do portal ao aplicativo</h3>
+      <div class="road" style="grid-template-columns:1fr 1fr">
+        <div><b>Fase 1 · Portal</b><ul><li>IQAr em tempo real</li><li>Mapa com as três fontes</li><li>Boletim automático</li><li>Alertas por WhatsApp e e-mail</li></ul></div>
+        <div><b>Fase 2 · Integração</b><ul><li>Previsão de 72 h</li><li>Painel Vigiar/SES e Defesa Civil</li><li>API pública e envio ao MonitorAr</li></ul></div>
+        <div class="later"><b>Fase 3 · App</b><ul><li>Notificação push e widget</li><li>Alerta por localização</li><li>Relatos com foto e GPS</li></ul></div>
+        <div class="later"><b>Fase 4 · Escala</b><ul><li>142 municípios</li><li>Painel escolar</li><li>Exposição pessoal e rotas</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE (só administrador) -->
+<section class="view" id="v-equipe" aria-labelledby="t-eq">
+  <div class="pagehead"><div><span class="eyebrow">Administração</span><h1 id="t-eq">Equipe com acesso</h1><p>As contas são criadas por você no console do Firebase (Authentication, aba Usuários). Na primeira vez que a pessoa entra, ela aparece aqui como pendente. Clique em Ativar para liberar o portal.</p></div></div>
+  <div class="card"><div class="tblwrap"><table id="eq-tbl"><tbody><tr><td class="muted">Carregando…</td></tr></tbody></table></div></div>
+</section>
+</main>
+<footer class="site"><div class="in"><span>QAR · Qualidade do Ar MT · Sema-MT e UFMT/PPGFA</span><span>Versão de desenvolvimento</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module">/*APP_JS*/</script>
+</body>
+</html>

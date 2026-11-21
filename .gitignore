@@ -1,0 +1,15 @@
+# credenciais NUNCA vão para o repositório
+*adminsdk*.json
+*service-account*.json
+*conta-servico*.json
+chave*.json
+codigo-fonte/agente_local/config_thermo.json
+codigo-fonte/agente_local/config_aqms06.json
+.env
+# gerados
+node_modules/
+__pycache__/
+.pytest_cache/
+*.log
+estado*.json
+desktop.ini

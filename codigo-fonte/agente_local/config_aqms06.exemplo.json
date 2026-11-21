@@ -1,0 +1,15 @@
+{
+  "_nota": "Copie para config_aqms06.json e ajuste as colunas ao arquivo exportado pelo datalogger.",
+  "estacao": {
+    "id": "aqms06-1", "tipo": "aqms", "nome": "AQMS06",
+    "municipio": "Cuiabá", "lat": -15.609, "lon": -56.066, "operador": "UFMT/PPGFA · Sema-MT"
+  },
+  "arquivo": "C:/AQMS06/exportacao.csv",
+  "separador": ";",
+  "coluna_data": "DataHora",
+  "formato_data": "%d/%m/%Y %H:%M",
+  "janela_min": 30,
+  "colunas": { "MP2,5": "PM2.5", "MP10": "PM10", "O3": "O3", "NO2": "NO2", "CO": "CO", "SO2": "SO2" },
+  "fatores": { "_nota": "Se o equipamento mede gases em ppb, converta para µg/m³ (25 °C): O3 1.96, NO2 1.88, SO2 2.62. CO deve ficar em ppm." },
+  "chave_servico": "C:/qar-chaves/qar-mt-adminsdk.json"
+}

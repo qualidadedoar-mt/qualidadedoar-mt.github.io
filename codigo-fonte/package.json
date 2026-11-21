@@ -1,0 +1,14 @@
+{
+  "name": "qualidadedoar-mt",
+  "private": true,
+  "description": "Fontes do QAR. Depois de 'npm install', rode 'python build.py' para gerar ../index.html.",
+  "scripts": {
+    "build": "python build.py || python3 build.py"
+  },
+  "dependencies": {
+    "firebase": "13.4.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  }
+}
