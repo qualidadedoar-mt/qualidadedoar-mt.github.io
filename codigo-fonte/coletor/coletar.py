@@ -29,8 +29,10 @@ TZ_MT = timezone(timedelta(hours=-4))  # America/Cuiaba (sem horário de verão)
 JANELA_H = 48           # horas guardadas na série do documento-resumo
 ONLINE_MIN = 75         # leitura mais antiga que isso = equipamento fora do ar
 PERIODO_H = {"MP2,5": 24, "MP10": 24, "SO2": 24, "O3": 8, "CO": 8, "NO2": 1}
-CAMPOS_PA = ["name", "latitude", "longitude", "last_seen", "humidity",
-             "pm2.5_cf_1_a", "pm2.5_cf_1_b"]
+# Campos mínimos (modo econômico). Nome vem do estacoes.json; posição só é pedida
+# enquanto algum sensor da lista ainda não tem coordenada conhecida.
+CAMPOS_MEDIDA = ["last_seen", "humidity", "pm2.5_cf_1_a", "pm2.5_cf_1_b"]
+CAMPOS_POSICAO = ["latitude", "longitude"]
 
 
 class ErroPurpleAir(RuntimeError):
@@ -71,14 +73,29 @@ def municipio_de(lon: float, lat: float) -> str | None:
 
 
 # ---------------------------------------------------------------- fontes
-def ler_purpleair(cfg: dict, chave: str | None, simulado: dict | None) -> list[dict]:
-    """Retorna leituras corrigidas: [{id, nome, municipio, ..., t, valores}]."""
+def ler_purpleair(cfg: dict, chave: str | None, simulado: dict | None,
+                  posicoes: dict | None = None) -> list[dict]:
+    """Retorna leituras corrigidas: [{id, nome, municipio, ..., t, valores}].
+
+    posicoes: {sensor_index: (lat, lon)} já conhecidas (do resumo anterior), para não
+    pagar pelos campos de posição a cada chamada.
+    """
     pa = cfg.get("purpleair", {})
+    posicoes = dict(posicoes or {})
+    for s in pa.get("sensores", []):
+        if "lat" in s and "lon" in s:
+            posicoes[s["indice"]] = (s["lat"], s["lon"])
     if simulado is not None:
         resp = simulado
     elif chave:
         import requests
-        params = {"fields": ",".join(CAMPOS_PA), "max_age": 3600}
+        campos = list(CAMPOS_MEDIDA)
+        if pa.get("modo") == "recorte" or any(s["indice"] not in posicoes for s in pa.get("sensores", [])):
+            campos += CAMPOS_POSICAO
+        if pa.get("modo") == "recorte":
+            campos.append("name")
+        params = {"fields": ",".join(campos), "max_age": 3600}
+        print(f"PurpleAir: campos pedidos = {params['fields']}")
         if pa.get("modo") == "recorte":
             r = pa["recorte"]
             params.update(nwlng=r["oeste"], nwlat=r["norte"], selng=r["leste"], selat=r["sul"], location_type=0)
@@ -112,7 +129,9 @@ def ler_purpleair(cfg: dict, chave: str | None, simulado: dict | None) -> list[d
         idx = d["sensor_index"]
         meta = cad.get(idx, {})
         m, dif, ok = media_ab(d.get("pm2.5_cf_1_a"), d.get("pm2.5_cf_1_b"))
-        lat, lon = meta.get("lat", d.get("latitude")), meta.get("lon", d.get("longitude"))
+        lat, lon = d.get("latitude"), d.get("longitude")
+        if lat is None and idx in posicoes:
+            lat, lon = posicoes[idx]
         mun = meta.get("municipio") or (municipio_de(lon, lat) if lat is not None else None)
         if mun is None:
             continue  # fora de Mato Grosso
@@ -207,7 +226,7 @@ def _resumo(r: dict, serie: dict, agora: int, intervalo_min: int) -> dict:
     iq, dom = iqar_estacao(medias)
     online = (agora - r["t"]) / 60 <= ONLINE_MIN
     return {
-        "id": r["id"], "tipo": r.get("tipo", "pa"), "nome": r.get("nome", r["id"]),
+        "id": r["id"], "tipo": r.get("tipo", "pa"), "indice": r.get("indice"), "nome": r.get("nome", r["id"]),
         "municipio": r.get("municipio"), "lat": r.get("lat"), "lon": r.get("lon"),
         "operador": r.get("operador", ""), "online": online,
         "ultimo": datetime.fromtimestamp(r["t"], TZ_MT).isoformat(timespec="minutes"),
@@ -249,9 +268,17 @@ def main() -> int:
         print("ERRO: defina FIREBASE_SERVICE_ACCOUNT ou use --saida", file=sys.stderr)
         return 1
 
+    if a.saida:
+        anterior = json.loads(Path(a.anterior).read_text(encoding="utf-8")) if a.anterior else None
+    else:
+        snap = db.collection("portal").document("estado").get()
+        anterior = snap.to_dict() if snap.exists else None
+    posicoes = {e["indice"]: (e["lat"], e["lon"]) for e in (anterior or {}).get("estacoes", [])
+                if e.get("indice") is not None and e.get("lat") is not None}
+
     erro_pa = None
     try:
-        leituras = ler_purpleair(cfg, os.environ.get("PURPLEAIR_API_KEY"), sim.get("purpleair") if sim else None)
+        leituras = ler_purpleair(cfg, os.environ.get("PURPLEAIR_API_KEY"), sim.get("purpleair") if sim else None, posicoes)
     except ErroPurpleAir as e:
         print(f"ERRO: {e}", file=sys.stderr)
         erro_pa, leituras = e, []
@@ -259,12 +286,6 @@ def main() -> int:
     if not leituras:
         print("Nenhuma fonte de dados disponível; nada publicado (o portal segue em modo demonstração).")
         return 1 if erro_pa else 0
-
-    if a.saida:
-        anterior = json.loads(Path(a.anterior).read_text(encoding="utf-8")) if a.anterior else None
-    else:
-        snap = db.collection("portal").document("estado").get()
-        anterior = snap.to_dict() if snap.exists else None
 
     estado = atualizar_estado(anterior, leituras, agora, intervalo)
 

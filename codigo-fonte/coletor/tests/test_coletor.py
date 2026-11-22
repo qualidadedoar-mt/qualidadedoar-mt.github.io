@@ -55,3 +55,28 @@ def test_serie_acumula():
     assert e["completude"] == 1.0 and e["representativo"]
     assert len(e["serie"]["MP2,5"]["t"]) == 60
     assert e["iqar"] == indice("MP2,5", e["medias"]["MP2,5"])
+
+
+def test_campos_economicos(monkeypatch):
+    """Só pede posição enquanto algum sensor da lista não tem coordenada conhecida."""
+    import requests
+    cfg = coletar.carregar_config()
+    pedidos = []
+
+    class Resp:
+        status_code = 200
+        def __init__(self, campos):
+            self.campos = campos
+        def json(self):
+            return {"fields": ["sensor_index"] + self.campos, "data": []}
+
+    def falso_get(url, params, headers, timeout):
+        pedidos.append(params["fields"].split(","))
+        return Resp(params["fields"].split(","))
+
+    monkeypatch.setattr(requests, "get", falso_get)
+    coletar.ler_purpleair(cfg, "chave", None, {})
+    assert "latitude" in pedidos[-1] and "name" not in pedidos[-1]
+    todas = {s["indice"]: (-15.6, -56.1) for s in cfg["purpleair"]["sensores"]}
+    coletar.ler_purpleair(cfg, "chave", None, todas)
+    assert pedidos[-1] == coletar.CAMPOS_MEDIDA
