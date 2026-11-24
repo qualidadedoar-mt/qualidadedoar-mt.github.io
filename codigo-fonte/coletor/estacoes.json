@@ -14,7 +14,7 @@
       "leste": -50.1,
       "sul": -18.1
     },
-    "_nota_sensores": "Exportado do painel PurpleAir (my-sensors-2026-11-21). Sem 'municipio', o coletor descobre pela posição. Fora da lista: 240119 (UNEMAT Nova Mutum antigo, offline desde 2026-04).",
+    "_nota_sensores": "Exportado do painel PurpleAir (my-sensors-2026-11-21). Sem 'municipio', o coletor descobre pela posição. Fora da lista: 241655 (IPAM, local a definir, offline desde 2026-10; voltar quando reinstalado) e 240119 (UNEMAT Nova Mutum antigo, offline desde 2026-04).",
     "sensores": [
       {
         "indice": 241691,
@@ -134,12 +134,6 @@
         "nome": "SABA Poconé",
         "municipio": "Poconé",
         "operador": "Sema-MT · SABA"
-      },
-      {
-        "indice": 241655,
-        "id": "pa-ipam-a-definir",
-        "nome": "IPAM (local a definir)",
-        "operador": "Sema-MT · IPAM"
       }
     ]
   }
